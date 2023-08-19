@@ -1,32 +1,22 @@
 version: "3"
 
-networks:
-
-    network-software-shinobi:
-
-        external: false
-
 services:
 
     software-shinobi-mysql-database:
 
         container_name: software-shinobi-mysql-database
 
-        image: softwareshinobi/software-shinobi-mysql-training-database:latest
+        image: mysql:8
 
         restart: always
-
-        networks:
-
-            - network-software-shinobi
-
+        
         ports:
 
             - 3306:3306
 
         volumes:
 
-            - ../container-volume-data/mysql-database:/var/lib/mysql
+            - ./container-volume-data/mysql-database:/var/lib/mysql
 
         environment:
 
@@ -49,10 +39,6 @@ services:
             - software-shinobi-mysql-database
 
         restart: unless-stopped
-
-        networks:
-
-            - network-software-shinobi
 
         ports:
 
